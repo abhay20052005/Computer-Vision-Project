@@ -1,0 +1,38 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Datasets (Local images should NOT be pushed to GitHub)
+dataset/
+datasets/
+train/
+test/
+val/
+validation/
+
+# Models
+*.h5
+*.model
+*.pb
+*.weights
+*.pt
+*.pth
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Flask
+instance/
+.webassets-cache

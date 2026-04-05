@@ -25,9 +25,10 @@ def create_model():
                   metrics=['accuracy'])
     return model
 
-def train_model(dataset_dir='dataset', epochs=5):
+def train_model(dataset_dir='datasets', epochs=10):
     if not os.path.exists(dataset_dir):
-        print(f"Dataset directory '{dataset_dir}' not found. Please create it and add 'cats' and 'dogs' subfolders.")
+        print(f"Dataset directory '{dataset_dir}' not found!")
+        print("Expected: datasets/Cat and datasets/Dog")
         return
 
     # Use MobileNetV2's specific preprocessing function
@@ -69,8 +70,10 @@ def train_model(dataset_dir='dataset', epochs=5):
     print("Model saved as 'cat_dog_pretrained_model.h5'")
 
 if __name__ == '__main__':
-    # Ensure the dataset path exists
-    os.makedirs('dataset/cats', exist_ok=True)
-    os.makedirs('dataset/dogs', exist_ok=True)
-    print("Place your training images into 'dataset/cats' and 'dataset/dogs', then run this script.")
-    train_model(epochs=5)
+    # Ensure images exist
+    if os.path.exists('datasets/Cat') and os.path.exists('datasets/Dog'):
+        print(f"Starting training on images in 'datasets/'...")
+        train_model(epochs=10)
+    else:
+        print("Required folders 'datasets/Cat' or 'datasets/Dog' NOT found!")
+        print("Please check your folder structure.")

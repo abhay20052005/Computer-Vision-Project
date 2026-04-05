@@ -173,7 +173,9 @@ def run_live_camera(model=None):
 
         # Run inference every N frames
         if frame_count % prediction_interval == 0:
-            img_resized = cv2.resize(frame, (224, 224))
+            # FIX: Convert BGR (OpenCV) to RGB (Model expectation)
+            img_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            img_resized = cv2.resize(img_rgb, (224, 224))
             img_array = np.expand_dims(img_resized, axis=0).astype(np.float32)
             img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
 

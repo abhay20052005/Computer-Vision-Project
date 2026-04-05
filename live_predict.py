@@ -37,8 +37,9 @@ def run_live_recognition():
             print("Failed to grab frame. Exiting.")
             break
 
-        # Preprocess the current frame for the model
-        img_resized = cv2.resize(frame, (224, 224))
+        # FIX: Convert BGR (From camera) to RGB (What model expects)
+        img_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        img_resized = cv2.resize(img_rgb, (224, 224))
         img_array = np.expand_dims(img_resized, axis=0)
         img_array = preprocess_input(img_array.astype(np.float32))
 

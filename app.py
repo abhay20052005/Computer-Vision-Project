@@ -56,6 +56,8 @@ def predict():
             result = "Cat"
             confidence = 1.0 - score
             
+        print(f"DEBUG: Predicted {result} with {confidence*100:.2f}% confidence (Raw score: {score:.4f})")
+            
         return jsonify({
             'success': True,
             'result': result,
